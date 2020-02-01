@@ -15,7 +15,7 @@ v := <-ch  // 从 ch 接收，并且赋值给 v。
 ch := make(chan int)
 默认情况下，在另一端准备好之前，发送和接收都会阻塞。这使得 goroutine 可以在没有明确的锁或竞态变量的情况下进行同步。
 
-这玩意就像阻塞队列
+这玩意就像阻塞队列， 先进先出FIFO队列
 */
 func sum(a []int, c chan int) {
 	sum := 0
