@@ -1,0 +1,15 @@
+func StInsertFunc():
+0:                                                                entry P:0 S:0
+    t0 = local StInsertTest (st)                              *StInsertTest
+    t1 = &t0.Name [#0]                                              *string
+    t2 = &t0.Age [#1]                                                  *int
+    *t1 = "fg":string
+    *t2 = 12:int
+    t3 = *t0                                                   StInsertTest
+    t4 = new [1]any (varargs)                                       *[1]any
+    t5 = &t4[0:int]                                                    *any
+    t6 = make any <- StInsertTest (t3)                                  any
+    *t5 = t6
+    t7 = slice t4[:]                                                  []any
+    t8 = fmt.Println(t7...)                              (n int, err error)
+    return
