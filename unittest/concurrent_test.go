@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"sync"
+	"sync/atomic"
 	"testing"
 	"time"
 
@@ -39,12 +40,12 @@ func TestConcurrentControl(t *testing.T) {
 		w := &sync.WaitGroup{}
 		n := 3
 		w.Add(n)
-		errCnt := 0
+		var errCnt int32 = 0
 		for i := 0; i < n; i++ {
 			go func() {
 				defer w.Done()
 				if errors.Is(s.Hello(), lockFailed) {
-					errCnt++
+					atomic.AddInt32(&errCnt, 1)
 				}
 			}()
 		}
